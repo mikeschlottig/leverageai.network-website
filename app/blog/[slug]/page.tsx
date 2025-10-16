@@ -5,26 +5,6 @@ import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  title: "Blog Post | LeverageAI",
-  description: "Expert insights on AI infrastructure, data analytics, and business automation.",
-  openGraph: {
-    type: "article",
-    images: [
-      {
-        url: "/images/og/blog-post.jpg",
-        width: 1200,
-        height: 630,
-        alt: "LeverageAI Blog Post"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: ["/images/og/blog-post.jpg"]
-  }
-}
-
 // Blog post data with real content
 const getPostBySlug = (slug: string) => {
   const posts: Record<string, any> = {
