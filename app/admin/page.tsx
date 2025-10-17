@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { PageLayout } from "@/components/page-layout"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -8,8 +8,9 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Save, Plus, Edit, Trash2 } from "lucide-react"
+import { Save, Plus, Edit, Trash2, LogOut } from "lucide-react"
 import dynamic from "next/dynamic"
+import AdminLogin from "./login"
 
 // Dynamically import the editor to avoid SSR issues
 const NovelEditor = dynamic(() => import("./novel-editor"), {
@@ -119,6 +120,8 @@ const initialPosts: BlogPost[] = [
 ]
 
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true)
   const [posts, setPosts] = useState<BlogPost[]>(initialPosts)
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null)
   const [isCreating, setIsCreating] = useState(false)
@@ -129,6 +132,49 @@ export default function AdminPage() {
     content: "",
     category: "General"
   })
+
+  // Check authentication on mount
+  useEffect(() => {
+    const authToken = sessionStorage.getItem("adminAuth")
+    const authTime = sessionStorage.getItem("adminAuthTime")
+
+    if (authToken && authTime) {
+      const tokenAge = Date.now() - parseInt(authTime)
+      const maxAge = 8 * 60 * 60 * 1000 // 8 hours
+
+      if (tokenAge < maxAge) {
+        setIsAuthenticated(true)
+      } else {
+        sessionStorage.removeItem("adminAuth")
+        sessionStorage.removeItem("adminAuthTime")
+      }
+    }
+
+    setIsCheckingAuth(false)
+  }, [])
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("adminAuth")
+    sessionStorage.removeItem("adminAuthTime")
+    setIsAuthenticated(false)
+  }
+
+  // Show loading while checking auth
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show login if not authenticated
+  if (!isAuthenticated) {
+    return <AdminLogin onLogin={() => setIsAuthenticated(true)} />
+  }
 
   const categories = ["General", "Data Analytics", "AI Communications", "Sales & Marketing", "Infrastructure"]
 
@@ -221,23 +267,33 @@ export default function AdminPage() {
                 Create and manage blog content
               </p>
             </div>
-            <Button
-              onClick={() => {
-                setIsCreating(true)
-                setEditingPost(null)
-                setFormData({
-                  title: "",
-                  slug: "",
-                  description: "",
-                  content: "",
-                  category: "General"
-                })
-              }}
-              className="bg-blue-600 hover:bg-blue-700"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              New Post
-            </Button>
+            <div className="flex gap-3">
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                className="border-red-300 text-red-600 hover:bg-red-50 dark:border-red-800 dark:text-red-400 dark:hover:bg-red-900/20"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+              <Button
+                onClick={() => {
+                  setIsCreating(true)
+                  setEditingPost(null)
+                  setFormData({
+                    title: "",
+                    slug: "",
+                    description: "",
+                    content: "",
+                    category: "General"
+                  })
+                }}
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                New Post
+              </Button>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
