@@ -73,6 +73,8 @@ export default function HomePage() {
 
   const navigationPages = [
     { title: "Home", href: "/" },
+    { title: "Blog", href: "/blog" },
+    { title: "LLM.txt", href: "/llm.txt" },
     { title: "Data & Analytics Services", href: "/data-analytics" },
     { title: "AI Phone & Chatbots", href: "/ai-communications" },
     { title: "AI Sales & Marketing", href: "/ai-sales-marketing" },

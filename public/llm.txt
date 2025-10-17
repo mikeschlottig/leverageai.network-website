@@ -1,0 +1,60 @@
+# LeverageAI.network - AI Infrastructure & Data Analytics Platform
+
+## Project Overview
+LeverageAI.network is a comprehensive AI solutions platform providing secure, private AI infrastructure and data analytics tailored to specific industries.
+
+## Core Services
+- **Data & Analytics Services**: Enterprise-grade analytics using Anaconda platform
+- **AI Communications**: Intelligent phone receptionists and chatbots with NLP
+- **AI Sales & Marketing**: Lead qualification automation and predictive analytics
+- **VoIP Phone Service**: Cloud-based communication solutions
+- **Custom AI Avatars**: Personalized AI avatar generation
+- **Cybersecurity**: SOC2 and HIPAA compliant infrastructure
+- **Secure AI Infrastructure**: On-premise and private cloud deployment
+- **Technical SEO Services**: React-based websites optimized for search engines
+- **In-Office AI Workshops**: Custom training and implementation support
+
+## Target Industries
+- Legal: Case management, client intake automation, document analysis
+- Construction: Project tracking, resource optimization
+- Healthcare: HIPAA-compliant AI solutions, patient communication
+- Real Estate: Property management automation, tenant analytics
+- Automotive: Inventory management, customer service automation
+
+## Technology Stack
+- **Frontend**: Next.js 15.2.4, React 19, TypeScript
+- **UI Components**: Radix UI, Tailwind CSS
+- **Data Science**: Anaconda stack, Python-based predictive models
+- **Infrastructure**: Cloudflare Pages, Supabase
+- **Monitoring**: Grafana, Prometheus
+- **Blog Editor**: Novel.sh (lightweight editor)
+
+## Key Features
+- Blog platform with real-world case studies
+- Admin panel for content management
+- Responsive design with dark mode support
+- Static site generation for optimal performance
+- SEO-optimized architecture
+
+## Deployment
+- **Platform**: Cloudflare Pages
+- **Repository**: https://github.com/mikeschlottig/leverageai.network-website
+- **Build Command**: npm run build (static export)
+- **Output Directory**: out/
+
+## Contact Information
+- **Phone**: (541) 450-2082
+- **Company**: LeverageAI LLC
+- **Location**: Oregon, USA
+
+## Blog Content
+The platform features detailed case studies including:
+- "When Dashboards Lie: A Data Engineer's Confession" - 3D dependency mapping and predictive analytics
+- "The $47,000 Voicemail" - AI phone systems for law firms
+- "The Three-Month Ghost" - AI lead scoring for sales pipeline optimization
+
+## Purpose
+This file (llm.txt) provides structured information about the LeverageAI.network platform for Large Language Models (LLMs) to understand the project context, architecture, and business offerings.
+
+---
+Last Updated: 2025-10-16
